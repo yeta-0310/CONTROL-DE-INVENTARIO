@@ -5,6 +5,7 @@ import { productos as productosIniciales } from "./data/productos";
 import "./App.css";
 
 function App() {
+  const [mensaje, setMensaje] = useState("");
   const obtenerProductosIniciales = () => {
     const guardados = localStorage.getItem("inventario");
     if (guardados) {
@@ -26,17 +27,29 @@ function App() {
     setProductoEditando(null);
   };
 
-  const agregarProducto = (nuevoProducto) => {
-    setProductos([...productos, nuevoProducto]);
-  };
+const agregarProducto = (nuevoProducto) => {
+  setProductos([...productos, nuevoProducto]);
+  setMensaje("Producto agregado correctamente.");
 
-  const actualizarProducto = (actualizado) => {
-    const nuevaLista = productos.map((producto) =>
-      producto.id === actualizado.id ? actualizado : producto
-    );
-    setProductos(nuevaLista);
-    setProductoEditando(null);
-  };
+  setTimeout(() => {
+    setMensaje("");
+  }, 3000);
+};
+
+const actualizarProducto = (actualizado) => {
+  const nuevaLista = productos.map((producto) =>
+    producto.id === actualizado.id ? actualizado : producto
+  );
+
+  setProductos(nuevaLista);
+  setProductoEditando(null);
+
+  setMensaje("Producto actualizado correctamente.");
+
+  setTimeout(() => {
+    setMensaje("");
+  }, 3000);
+};
 
   const eliminarProducto = (id) => {
     const nuevaLista = productos.filter((producto) => producto.id !== id);
