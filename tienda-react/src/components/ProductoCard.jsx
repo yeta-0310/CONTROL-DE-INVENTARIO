@@ -9,7 +9,7 @@ function ProductoCard({ producto, onEliminar, onModificarStock, onEditar }) {
   } = producto;
 
   const estado = stock > 0 ? "Disponible" : "Agotado";
-
+  
   const formatearPrecio = (valor) => {
     return valor ? valor.toLocaleString("es-CO") : "0";
   };
@@ -61,6 +61,11 @@ function ProductoCard({ producto, onEliminar, onModificarStock, onEditar }) {
             +
           </button>
         </div>
+        {stock > 0 && stock <= 2 && (
+          <p className="stock-bajo">
+            Stock bajo
+          </p>
+        )}
 
         <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
           <button
